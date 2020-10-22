@@ -13,22 +13,86 @@
 
 	Find the largest palindrome made from the product of two 3-digit numbers.</p>
 
+<h3>Answer:</h3>
 <?php
 
-/*
- * Start with the largest 3 digit numbers and work backwards?
- * Start with the largest possible product of 2 three digit numbers and work backwards?
- */
+//checkEqualPairs();
 
-$product = 999*999;
+//function checkEqualPairs() {
+//
+//    $current_palindrome = 0;
+//    $product = 100000;
+//    $i = 999;
+//
+//    while ($product != $current_palindrome) {
+//        $product = $i * $i;
+//
+//        if (isThisPalindrome( $product ) == true && $product > $current_palindrome) {
+//            $current_palindrome = $product;
+//			return checkUnequalPairs($current_palindrome);
+//        } elseif ($product <= $current_palindrome) {
+//            return checkUnequalPairs($current_palindrome);
+//        } else {
+//            $i--;
+//        }
+//
+//
+//    }
+//
+//    return "No palindromes found";
+//
+//}
 
-$from_start = substr($product, 0,1);
-$from_end = substr($product, -1);
+checkUnequalPairs(8008);
+function checkUnequalPairs($current_palindrome) {
 
-echo $product . ", " . $from_start . ", " . $from_end;
+    $product = 1000000;
+    $i = 999;
+    $j = 999;
 
-if ($first_digit == $last_digit) {
+    while ($product != $current_palindrome) {
+        while ($product != $current_palindrome) {
+			$product = $i * $j;
 
+			if ( isThisPalindrome( $product ) == true && $product > $current_palindrome ) {
+				return "The largest palindrome made from the product of two 3-digit numbers is " . $current_palindrome;
+			}
+
+			$j--;
+		}
+
+		$i--;
+	}
+
+
+
+	return "No palindromes found";
+
+}
+
+
+function isThisPalindrome($product) {
+
+	$first_digit = substr($product, 0,1);
+	$last_digit = substr($product, -1, 1);
+	$second_digit = substr($product, 1,1);
+	$second_last_digit = substr($product, -2, 1);
+	$third_digit = substr($product, 2,1);
+	$third_last_digit = substr($product, -3, 1);
+
+	if ( $first_digit == $last_digit ) {
+		if ( $second_digit == $second_last_digit ) {
+			if ( $third_digit == $third_last_digit ) {
+				return true;
+			}
+
+
+		}
+
+
+	}
+
+	return false;
 }
 
 ?>
