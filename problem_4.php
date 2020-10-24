@@ -16,46 +16,49 @@
 <h3>Answer:</h3>
 <?php
 
-//checkEqualPairs();
+checkEqualPairs();
 
-//function checkEqualPairs() {
-//
-//    $current_palindrome = 0;
-//    $product = 100000;
-//    $i = 999;
-//
-//    while ($product != $current_palindrome) {
-//        $product = $i * $i;
-//
-//        if (isThisPalindrome( $product ) == true && $product > $current_palindrome) {
-//            $current_palindrome = $product;
-//			return checkUnequalPairs($current_palindrome);
-//        } elseif ($product <= $current_palindrome) {
-//            return checkUnequalPairs($current_palindrome);
-//        } else {
-//            $i--;
-//        }
-//
-//
-//    }
-//
-//    return "No palindromes found";
-//
-//}
+function checkEqualPairs(){
 
-checkUnequalPairs(8008);
+    $i = 999;
+    $palindrome_found = false;
+
+    while ($palindrome_found == false) {
+        $product = $i * $i;
+
+        if (isThisPalindrome( $product ) == true) {
+			$palindrome_found = true;
+			break;
+		}
+
+        $i--;
+    }
+
+	return checkUnequalPairs( $product);
+
+}
+
+
 function checkUnequalPairs($current_palindrome) {
 
-    $product = 1000000;
     $i = 999;
     $j = 999;
+    $palindrome_found = false;
 
-    while ($product != $current_palindrome) {
-        while ($product != $current_palindrome) {
+    while ($palindrome_found == false) { //looping through decreasing values of i
+        while ($j < 500) { //looping through decreasing values of j
 			$product = $i * $j;
 
-			if ( isThisPalindrome( $product ) == true && $product > $current_palindrome ) {
-				return "The largest palindrome made from the product of two 3-digit numbers is " . $current_palindrome;
+			if ( isThisPalindrome( $product ) == true ) {
+			    $palindrome_found = true;
+
+			    if ($current_palindrome > $product) {
+					echo "The largest palindrome made from the product of two 3-digit numbers is " . $current_palindrome;
+				} else {
+			        echo "The largest palindrome made from the product of two 3-digit numbers is " . $product;
+                }
+
+			    break;
 			}
 
 			$j--;
@@ -64,9 +67,6 @@ function checkUnequalPairs($current_palindrome) {
 		$i--;
 	}
 
-
-
-	return "No palindromes found";
 
 }
 
